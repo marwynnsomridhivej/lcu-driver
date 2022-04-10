@@ -163,7 +163,7 @@ class Connection:
         if kwargs.get('data'):
             kwargs['data'] = dumps(kwargs['data'])
         session = await self.session.get()
-        return session.request(method, url, ssl=False, **kwargs)
+        return await session.request(method, url, ssl=False, **kwargs)
 
     async def run_ws(self):
         """Start the websoocket connection. This is responsible to raise Connector close event and
