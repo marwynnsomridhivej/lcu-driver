@@ -163,7 +163,7 @@ class Connection:
         if kwargs.get('data'):
             kwargs['data'] = dumps(kwargs['data'])
         session = await self.session.get()
-        return session.request(method, url, verify_ssl=False, **kwargs)
+        return session.request(method, url, ssl=False, **kwargs)
 
     async def run_ws(self):
         """Start the websoocket connection. This is responsible to raise Connector close event and
@@ -198,7 +198,7 @@ class Connection:
         while True:
             try:
                 async with aiohttp.ClientSession() as session:
-                    async with session.get(f'{self.address}/riotclient/region-locale', verify_ssl=False) as _:
+                    async with session.get(f'{self.address}/riotclient/region-locale', ssl=False) as _:
                         break
             except aiohttp.client_exceptions.ClientConnectorError:
                 pass
